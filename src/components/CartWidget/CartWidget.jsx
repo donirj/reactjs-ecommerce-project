@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react"
-import { ShoppingBag, AddShoppingCart } from '@mui/icons-material';
+import { ShoppingBag, AddShoppingCart, SportsEsports } from '@mui/icons-material';
 import './CartWidget.scss'
 
 const CartWidget = () => {

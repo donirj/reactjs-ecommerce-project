@@ -1,9 +1,9 @@
 import { Box, List, ListItem, ListItemIcon, ListItemText, ListItemButton } from '@mui/material'
 import React from 'react' 
-import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
+import { SportsEsports } from '@mui/icons-material';
 import CartWidget from '../CartWidget/CartWidget';
 import reactLogo from '../../assets/react.svg'
-import './NavListDrawer.scss' 
+import './_NavListDrawer.scss' 
 
 function NavListDrawer() {
   return (
@@ -12,7 +12,7 @@ function NavListDrawer() {
         <List className='List1'>
           <ListItem>
             <ListItemIcon>
-            <img src={reactLogo} className="logo-react" alt="React logo" />
+            <SportsEsports />
             </ListItemIcon>
             <ListItemText primary="Doni Games"/>
           </ListItem>
