@@ -1,18 +1,18 @@
 import React from 'react';
-import { useState } from "react"
-import { ShoppingBag, AddShoppingCart, SportsEsports } from '@mui/icons-material';
+import { useContext } from "react"
+import { AddShoppingCart } from '@mui/icons-material';
 import './CartWidget.scss'
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
 
 const CartWidget = () => {
-
-    const [counter, setCounter] = useState(10)
+    const { totalCantidad } = useContext(CartContext)
 
     return(
-        <div className='container'>
+        <Link to="/cart" className='container'>
             <AddShoppingCart />
-        <p>{counter}</p>
-        
-        </div>
+            <span>{totalCantidad()}</span>
+        </Link>
     )
 }
 

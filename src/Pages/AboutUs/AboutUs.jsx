@@ -1,16 +1,20 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import React from 'react'
+import { withProductsData } from '../../ejemplos/hoc/withProducts'
 
-function AboutUs() {
+function AboutUs({productos, loading}) {
+
+
+    // referencia
+    const clickear = (event) => {
+      event.stopPropagation()
+      console.log(event)
+    }
 
   useEffect(() => {
 
-    const clickear = () => {
-      console.log('click')
-    }
-
     window.addEventListener('click', clickear)
-  
+
     return () => {
       window.removeEventListener('click', clickear)
     }
@@ -18,7 +22,10 @@ function AboutUs() {
   }, [])
 
   return (
-    <div>Nosotros</div>
+    <div className='container my-5' onClick={clickear}>
+      <h2>Nosotros</h2>
+      <hr />
+    </div>
   )
 }
 

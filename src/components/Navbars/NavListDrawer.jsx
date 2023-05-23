@@ -8,19 +8,25 @@ import PokeApi from '../PokeList/PokeApi';
 import PokeList from '../PokeList/PokeList';
 import { Link } from 'react-router-dom';
 import { CatchingPokemon } from '@mui/icons-material';
+import Buscador from '../../ejemplos/renderprops/Buscador';
+import { useState, useContext } from 'react'
+import { DarkModeContext } from '../../context/DarkModeContext'
 
 function NavListDrawer() {
+
+  const {darkMode, changeMode} = useContext(DarkModeContext)
+
   return (
     <Box className='Box1' sx={{width: '100%'}}>
+
       <nav>
         <List className='List1'>
         <Link className='button1' component="a" href='/'>
-            <Link to='/'>
             <CatchingPokemon />
-            </Link>
             <ListItemText primary="Poke Store"/>
         </Link>
-          <CartWidget />
+          <h2>{darkMode ? 'dark' : 'light'}</h2>
+          <button onClick={changeMode} >Changes</button>
           <Link className='button1' component="a" to='/'>
             <ListItemText className='text1' primary="All Products"/>
           </Link>
@@ -39,8 +45,10 @@ function NavListDrawer() {
           <Link className='button1' component="a" to='productos/big'>
             <ListItemText className='text1' primary="big"/>
           </Link>
+          <CartWidget />
         </List>
       </nav>
+      <Buscador />
     </Box>
   )
 }

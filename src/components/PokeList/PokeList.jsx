@@ -13,8 +13,6 @@ function PokeList() {
     previous: null
   })
 
-  console.log(pagination)
-
 
     useEffect(() => {
       fetch(url)

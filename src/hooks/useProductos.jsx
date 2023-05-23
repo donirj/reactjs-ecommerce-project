@@ -1,15 +1,19 @@
 // custom Hook
 import { useEffect, useState } from "react"
 import { pedirDatos } from "../helpers/pedirDatos"
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
+
 
 export const useProductos = () => {
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    
-  const { categoryId } = useParams()
-  console.log(categoryId)
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const search = searchParams.get('search')
+
+    console.log(search)
+
+    const { categoryId } = useParams()
 
     useEffect(() => {
         setLoading(true)
@@ -27,7 +31,12 @@ export const useProductos = () => {
         .finally(() => setLoading(false))
     }, [categoryId])
     
+    const listado = search
+            ? productos.filter((el) => el.name.toLowerCase().includes(search.toLowerCase()))
+            : productos 
 
+    console.log(listado)
+    
     return ({
         productos,
         loading
