@@ -7,7 +7,6 @@ export const CartContext = createContext()
 export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
-      console.log(cart)
 
     const agregarAlCarrito = (item) => {
         setCart([...cart, item])
@@ -27,7 +26,22 @@ export const CartProvider = ({children}) => {
     }
 
     const totalCompra = () => {
-        return cart.reduce((acc, item) => acc + item.cantidad * item.precio, 0)
+        return cart.reduce((acc, item) => acc + item.cantidad * item.price, 0)
+    }
+
+    const removeItem = (id) => {
+        // seteo de carrito, filtro el array con los item cuyo id sea distinto al id que recibo
+        setCart(cart.filter((item) => item.id !== id))
+    }
+
+    const modifCantidad = (id) => {
+        
+        // replica del array
+        const _cart = cart.slice()
+        // encontrar el id
+        const item = _cart.find(e => e.id === id)
+        item.cantidad++
+        setCart(_cart)
     }
 
     return (
@@ -37,7 +51,8 @@ export const CartProvider = ({children}) => {
             isInCart,
             emptyCart,
             totalCantidad,
-            totalCompra
+            totalCompra,
+            removeItem
         }}>
             {/* renderizado de lo que recibe de children*/}
             {children}

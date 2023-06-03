@@ -1,51 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import './_ItemListContainer.scss'
-import { pedirDatos } from '../../helpers/pedirDatos'
 import ItemList from '../ItemList/ItemList'
-import { useProductos } from '../../hooks/useProductos'
-import { useParams, useSearchParams } from 'react-router-dom'
-
+import { useParams } from 'react-router-dom'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { db } from '../../firebase/config'
 
 function ItemListContainer({ name }) {
 
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
-  const [searchParams, setSearchParams] = useSearchParams()
-  
-  const search = searchParams.get('search')
-
-  console.log(search)
 
   const { categoryId } = useParams()
 
   useEffect(() => {
       setLoading(true)
 
-      pedirDatos()
-      .then((data) => {
-          if(!categoryId){
-             setProductos(data)
-          } else {
-              // producto que coincida con el categoryId
-              setProductos(data.filter((el) => el.category === categoryId))
-          }
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false))
-  }, [categoryId])
+      // 1. create reference (sync), first parameter is the firestore db, second is the collection to consume
+      const productosRef = collection(db, "productos")
+      const q = categoryId
+                  ? query(productosRef, where("category", "==", categoryId))
+                  : productosRef
+      // 2. consume reference (async) with getDocs
+      getDocs(q)
+        .then((res) => {
+          const docs = res.docs.map((doc) => {
+            // new object
+            return {
+              ...doc.data(),
+              id: doc.id
+            } 
+          })
+          setProductos(docs)
+        })
+        .catch(e => console.log(e))
+        .finally(() => setLoading(false))
+
+  }, [])
   
-  const listado = search
-          ? productos.filter((el) => el.name.toLowerCase().includes(search.toLowerCase()))
-          : productos 
-
-  console.log(listado)
-
   return (
-    <div className='Box2'>
-        {
-          loading 
-          ? <h2>Cargando...</h2>
-          : <ItemList items={listado}/>
+    <div className='container my-5'>
+        { loading 
+          ?  <h2>Cargando...</h2>
+          : <ItemList items={productos}/>  
         }
     </div>
   )

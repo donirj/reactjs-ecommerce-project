@@ -5,17 +5,18 @@ import './_itemCard.scss'
 function ItemCard({item}) {
     const {id, name, price, desc} = item
   return (
-        <div key={item.id}>
+    <Link to={`/detail/${item.id}`} >
+        <div key={item.id} className='eachProd'>
             <div>
-              <img src={item.img} className='img' alt={item.nombre} />
+              <img src={item.img} className='imgMain' alt={item.nombre} />
             </div>
-            <h3 className='titleSize'>{item.name}</h3>
-            <p>{item.price}</p>
-            <p>Categoria {item.category}</p>
-            <p>{item.desc}</p>
-            <p>{item.name}</p>
-            <Link to={`/detail/${item.id}`} className='btn btn-primary'>Ver más</Link>
+            <div className='prodData'>
+              <p className='priceTag'>${item.price}</p>
+              <h3 className='titleSize'>{item.name}</h3>
+              {item.stock <= 3 && <p style={{color: 'red'}}>Quedan pocas unidades!</p>}
+            </div>
         </div> 
+    </Link>
   )
 }
 

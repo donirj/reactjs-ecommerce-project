@@ -6,3 +6,15 @@
 .logo-react{
     width: 35px;
 }
+
+.cart-widget {
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.cart-widget-active {
+    visibility: visible;
+    opacity: 1;
+}

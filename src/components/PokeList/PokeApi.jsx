@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useFetch } from '../../hooks/useFetch'
+import './_PokeApi.scss'
 
 function PokeApi() {
 
@@ -17,19 +18,23 @@ function PokeApi() {
   }
 
   return (
-    <div className='container my-5' >
+    <div className='container1' >
 
-        {
-            loading ? <h2>Cargando</h2>
-            :
-            <div>
-                <h3>{pokemon.name}</h3>
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            </div>
-        }
+        <div className='container2'>
 
-            <button onClick={handleAnte}>Anterior</button>
-            <button onClick={handleSig}>Siguiente</button>
+          {
+              loading ? <h2>Cargando...</h2>
+              :
+              <div>
+                  <h3>{pokemon.name}</h3>
+                  <img className='pokeImg' src={pokemon.sprites.front_default} alt={pokemon.name} />
+              </div>
+          }
+
+              <button className='btn btn-danger' onClick={handleAnte}>Anterior</button>
+              <button className='btn btn-success' onClick={handleSig}>Siguiente</button>
+
+        </div>
 
     </div>
   )

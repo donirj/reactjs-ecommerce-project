@@ -1,15 +1,16 @@
 
 import './_ItemDetail.scss'
 import ItemCount from '../ItemCount/ItemCount'
-import { useContext, useState } from 'react'
-import SelectTalle from '../../ejemplos/renderprops/SelectTalle'
+// The React useMemo Hook returns a memoized value.
+//  funciona para mantener la referencia o dirección de memoria de un dato
+import { useContext, useState, useMemo } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
 
 function ItemDetail({item}) {
+  const { cart, agregarAlCarrito, isInCart } = useContext(CartContext)
 
-  const { agregarAlCarrito, isInCart } = useContext(CartContext)
 
   console.log(isInCart(item.id))
 
@@ -27,6 +28,8 @@ function ItemDetail({item}) {
 
   }
 
+  const date = useMemo(() => new Date(), [cart])
+
 
   return (
     <div className='itemDetailCard'>
@@ -40,7 +43,9 @@ function ItemDetail({item}) {
               <p>{item.desc}</p>
               <p>{item.name}</p>
 
-              <p>subtotal: {item.price * cantidad}</p>
+              <p>Subtotal: {item.price * cantidad}</p>
+              {/* <Memo/>
+              {date.toLocaleDateString()} */}
 
               <br />
 
@@ -48,9 +53,7 @@ function ItemDetail({item}) {
                 isInCart(item.id)
                 ?  <Link className="btn btn-success" to="/cart" >Terminar mi compra</Link>
                 :  <ItemCount
-                  // info pasada por props a ItemCount
                   cantidad={cantidad}
-                    //  propiedad del state declarada arriba
                   setCantidad={setCantidad}
                   stock={item.stock}
                   agregar={handleAgregar}
