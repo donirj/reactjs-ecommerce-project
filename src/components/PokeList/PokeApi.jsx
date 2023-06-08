@@ -26,8 +26,12 @@ function PokeApi() {
               loading ? <h2>Cargando...</h2>
               :
               <div>
-                  <h3>{pokemon.name}</h3>
+                  <h3>Ve a tus pokemon favoritos</h3>
                   <img className='pokeImg' src={pokemon.sprites.front_default} alt={pokemon.name} />
+                  <p>Nombre: {pokemon.name}</p>
+                  <p>id: {pokemon.id}</p>
+                  <p>Altura: {pokemon.height}</p>
+                  <p>Peso: {pokemon.weight}</p>
               </div>
           }
 

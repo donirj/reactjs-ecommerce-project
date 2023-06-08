@@ -38,9 +38,9 @@ function NavListDrawer() {
             <ListItemText className='text1' primary="PokeApi"/>
           </Link>
           <Link className='button1' component="a" to='/nosotros'>
-            <ListItemText className='text1' primary="About us"/>
+            <ListItemText className='text1' primary="Nosotros"/>
           </Link>
-          <Link className='button1' component="a" to='productos/small'>
+          {/* <Link className='button1' component="a" to='productos/small'>
             <ListItemText className='text1' primary="small"/>
           </Link>
           <Link className='button1' component="a" to='productos/medium'>
@@ -48,7 +48,7 @@ function NavListDrawer() {
           </Link>
           <Link className='button1' component="a" to='productos/big'>
             <ListItemText className='text1' primary="big"/>
-          </Link>
+          </Link> */}
           {cart.length > 0 && <CartWidget />}
         </List>
       </nav>
