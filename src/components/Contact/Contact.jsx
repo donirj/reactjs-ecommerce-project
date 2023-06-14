@@ -9,7 +9,7 @@ const Contact = () => {
     })
 
     const handleInputChange = (e) => {
-        console.log(e.target.name)
+        
 
         setValues({
             // spread del estado anterior
@@ -21,8 +21,6 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('SUBMIT')
-        console.log(values)
 
         const now = new Date()
     }

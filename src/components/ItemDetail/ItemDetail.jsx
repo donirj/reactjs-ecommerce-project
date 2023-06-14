@@ -12,7 +12,7 @@ function ItemDetail({item}) {
   const { cart, agregarAlCarrito, isInCart } = useContext(CartContext)
 
 
-  console.log(isInCart(item.id))
+  
 
   const [cantidad, setCantidad] = useState(1)
   const [talle, setTalle] = useState(null)
