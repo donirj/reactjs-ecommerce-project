@@ -11,7 +11,6 @@ export const useProductos = () => {
 
     const search = searchParams.get('search')
 
-    console.log(search)
 
     const { categoryId } = useParams()
 
@@ -35,8 +34,7 @@ export const useProductos = () => {
             ? productos.filter((el) => el.name.toLowerCase().includes(search.toLowerCase()))
             : productos 
 
-    console.log(listado)
-    
+
     return ({
         productos,
         loading

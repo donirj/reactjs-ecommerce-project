@@ -44,6 +44,8 @@ function ItemDetail({item}) {
               <p>{item.name}</p>
 
               <p>Subtotal: {item.price * cantidad}</p>
+              {item.stock === 1  && <p style={{color: 'red'}}>Quedan pocas unidades!</p>}
+              {item.stock < 1 && <p style={{color: 'red'}}>Agotado!</p>}
               {/* <Memo/>
               {date.toLocaleDateString()} */}
 

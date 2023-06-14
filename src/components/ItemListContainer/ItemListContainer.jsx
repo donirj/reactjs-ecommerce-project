@@ -15,16 +15,14 @@ function ItemListContainer({ name }) {
   useEffect(() => {
       setLoading(true)
 
-      // 1. create reference (sync), first parameter is the firestore db, second is the collection to consume
       const productosRef = collection(db, "productos")
+
       const q = categoryId
                   ? query(productosRef, where("category", "==", categoryId))
                   : productosRef
-      // 2. consume reference (async) with getDocs
       getDocs(q)
         .then((res) => {
           const docs = res.docs.map((doc) => {
-            // new object
             return {
               ...doc.data(),
               id: doc.id
@@ -39,7 +37,8 @@ function ItemListContainer({ name }) {
   
   return (
     <div className='container my-5'>
-        { loading 
+        { 
+          loading 
           ?  <h2>Cargando...</h2>
           : <ItemList items={productos}/>  
         }

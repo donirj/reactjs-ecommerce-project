@@ -16,16 +16,16 @@ function ItemDetailContainer() {
 
     useEffect(() => {
         setLoading(true)
-
-        // 1. call to reference (sync)
+        
         const docRef = doc(db, "productos", itemId)
-        // 2. call to ref (async)
+        
         getDoc(docRef)
           .then((doc) => {
             const _item = {
               id: doc.id,
               ...doc.data()
             }
+            
             setItem(_item)
           })
           .catch(e => console.log(e))

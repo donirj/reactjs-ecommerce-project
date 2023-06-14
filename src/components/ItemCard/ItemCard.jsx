@@ -13,7 +13,8 @@ function ItemCard({item}) {
             <div className='prodData'>
               <p className='priceTag'>${item.price}</p>
               <h3 className='titleSize'>{item.name}</h3>
-              {item.stock <= 3 && <p style={{color: 'red'}}>Quedan pocas unidades!</p>}
+              {item.stock === 1  && <p style={{color: 'red'}}>Quedan pocas unidades!</p>}
+              {item.stock < 1 && <p style={{color: 'red'}}>Agotado!</p>}
             </div>
         </div> 
     </Link>

@@ -10,8 +10,6 @@ export const AuthProvider = ({children}) => {
         logged: false
     })
 
-    console.log(user)
-
     const login = (values) => {
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
@@ -32,7 +30,6 @@ export const AuthProvider = ({children}) => {
     }
 
     const register = (values) => {
-        // receives auth
         createUserWithEmailAndPassword(auth, values.email, values.password)
             .catch(e => console.log(e.message))
     }
@@ -43,7 +40,7 @@ export const AuthProvider = ({children}) => {
 
     useEffect(() => {    
         onAuthStateChanged(auth, (user) => {
-            console.log(user)
+
             if (user) {
                 setUser({
                     email: user.email,

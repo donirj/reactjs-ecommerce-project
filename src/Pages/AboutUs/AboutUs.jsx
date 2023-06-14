@@ -8,7 +8,7 @@ function AboutUs({productos, loading}) {
     // referencia
     const clickear = (event) => {
       event.stopPropagation()
-      console.log(event)
+  
     }
 
   useEffect(() => {
