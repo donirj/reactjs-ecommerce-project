@@ -39,10 +39,12 @@ const Checkout = () => {
 
         if(nombre.length < 3) {
             Swal.fire('El nombre es muy corto, debe tener mínimo 3 caracteres')
+            return
         }
         
         if(direccion.length < 5) {
             Swal.fire('La dirección es muy corta, debe tener mínimo 5 caracteres')
+            return
         }
 
         if(email.length < 5) {
@@ -159,7 +161,7 @@ const Checkout = () => {
                     
                 />
 
-                <button disabled={loading} className='btn btn-primary' type='submit'>{loading ? <Spinner /> : "Enviar"}</button>
+                <button className='btn btn-primary' type='submit'>Enviar</button>
             </form>
         </div>
     );
