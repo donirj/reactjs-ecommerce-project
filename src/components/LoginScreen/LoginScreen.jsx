@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const LoginScreen = () => {
     const { login, loginWithGoogle } = useContext(AuthContext)
+    const [error, setError] = useState(null)
 
     const [values, setValues] = useState({
         email: '',
@@ -23,6 +24,17 @@ const LoginScreen = () => {
         e.preventDefault()
         
         login(values)
+        console.log('error',e)
+
+        setError(`${'email o password inválido'}`)
+    }
+
+    const failSubmit = () => {
+        try {
+            throw new Error('¡Este es un error de ejemplo!');
+        } catch (error) {
+            handleSubmit(error)
+        }
     }
 
     return (
@@ -48,8 +60,11 @@ const LoginScreen = () => {
                         name='password'
                         onChange={handleInput}
                     />
-                    <button className='btn btn-primary' type='submit'>Login</button>
-                    <Link to="/register">Registrarme</Link>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <div className='buttonBox'>
+                        <button onSubmit={failSubmit} className='btn btn-primary' type='submit'>Login</button>
+                        <Link to="/register">Registrarme</Link>
+                    </div>
                     {/* <button className='btn btn-primary' onClick={loginWithGoogle}>Ingresar con google</button> */}
                 </form>
             </div>

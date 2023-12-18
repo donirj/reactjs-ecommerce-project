@@ -10,6 +10,17 @@
         width: 500px;
         background-color: white;
         padding: 20px;
+        text-align: center;
         border-radius: 20px;
+        
+    }
+
+    .buttonBox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 10px;
+        width: 30%;
+        
     }
 }

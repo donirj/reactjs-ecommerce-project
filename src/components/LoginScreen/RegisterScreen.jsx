@@ -48,8 +48,10 @@ const RegisterScreen = () => {
                         name='password'
                         onChange={handleInput}
                     />
+                    <div className='buttonBox'>
                     <button className='btn btn-primary' type='submit'>Registrarme</button>
                     <Link to="/login">Ya estoy registrado, iniciar sesion</Link>
+                    </div>
                 </form>
             </div>
         </div>
